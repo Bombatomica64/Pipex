@@ -6,15 +6,11 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:47:31 by lmicheli          #+#    #+#             */
-/*   Updated: 2023/10/26 18:18:16 by lmicheli         ###   ########.fr       */
+/*   Updated: 2023/12/06 13:04:58 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
-#include <unistd.h>
-#include <fcntl.h>
-#include <stdio.h>
-#include <stdlib.h>
 
 char	*ft_read(char *old_str, int fd)
 {
@@ -35,7 +31,7 @@ char	*ft_read(char *old_str, int fd)
 			return (0);
 		}
 		buf[rd] = '\0';
-		old_str = ft_strjoin(old_str, buf);
+		old_str = ft_newstrjoin(old_str, buf);
 	}
 	free(buf);
 	return (old_str);
@@ -55,24 +51,3 @@ char	*get_next_line(int fd)
 	old_str[fd] = ft_resto(old_str[fd]);
 	return (line);
 }
-
-/*
-int	main(void)
-{
-	int		fd;
-
-	fd = open("text.txt", O_RDONLY);
-	if (fd == -1)
-	{
-		return (0);
-	}
-
-		printf("%s\n", get_next_line(fd));
-		printf("%s\n", get_next_line(fd));
-		printf("%s\n", get_next_line(fd));
-		printf("%s\n", get_next_line(fd));
-		printf("%s\n", get_next_line(fd));
-		printf("%s\n", get_next_line(fd));
-	close(fd);
-	return (0);
-}*/

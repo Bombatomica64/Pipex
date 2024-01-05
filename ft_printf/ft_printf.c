@@ -64,5 +64,25 @@ int	ft_printf(const char *format, ...)
 	va_end(lst);
 	return (nbr_chr);
 }
+/*
+int	main(void)
+{
+// Test di base
+	ft_printf("Hello, world!\n");
+	ft_printf("%d\n", 1234);
+	ft_printf("%s\n", NULL);
+	ft_printf("%d\n", 1234);
+	ft_printf("%s\n", "Ciao, mondo!");
+	int* pointer = NULL;
+	ft_printf("%p\n", pointer);
+	ft_printf("%s\n", pointer);
+	ft_printf("%d\n", -1234567890123456789);
+//	printf("Norm:%d\n", -1234567890123456789);
+	ft_printf("%s\n", "Stringa troppo lunga");
+} */
+/* *char	str[] = "Hello, World!";
+	int		num;
+	int		*p;
 
-
+	num = -42;
+	p = &num; */

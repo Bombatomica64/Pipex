@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 17:33:09 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/01/05 16:51:47 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/01/05 17:43:45 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 int	main(int ac, char **av)
 {
-	int		*fd;
-	char	**cmds;
+	t_pipex	*data;
 
 	if (ac < 5)
 	{
@@ -23,21 +22,21 @@ int	main(int ac, char **av)
 		return (1);
 	}
 	basic_check(av[1], av[ac - 1]);
-	fd = open_files(av[1], av[ac - 1]);
-	cmds = get_commands(av, ac);
-	if (!cmds)
+	data->fd = open_files(av[1], av[ac - 1]);
+	data->cmds = get_commands(av, ac);
+	if (!data->cmds)
 	{
 		perror("Error: malloc failed\n");
-		free(fd);
+		free(data->fd);
 		return (-1);
 	}
-	if (pipe(fd) == -1)
+	if (pipe(data->fd) == -1)
 	{
 		perror("Error: pipe failed\n");
-		free(fd);
+		free(data->fd);
 		return (-1);
 	}
-	do_commands(cmds, fd);
+	do_commands(&data);
 }
 /*
 	char *args= ft_strjoin("/bin/", av[1]);

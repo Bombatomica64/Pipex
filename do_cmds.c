@@ -6,50 +6,42 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:21:18 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/01/05 17:16:10 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/01/05 18:26:53 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	do_commands(char **cmds, int *fd)
+void	do_commands(t_pipex *data)
 {
-	pid_t	chi_pid;
-
-	chi_pid = fork();
-	if (chi_pid == -1)
+	data->split_cmds = ft_gigasplit(data);
+	data->cmd_args = get_args(data);
+	data->chi_pid = fork();
+	if (data->chi_pid == -1)
 	{
 		perror("fork failed");
 		exit(EXIT_FAILURE);
 	}
-	if (chi_pid == 0)
-		child(fd, cmds);
+	if (data->chi_pid == 0)
+		child(data);
 	else
-		parent(chi_pid, cmds, fd);
+		parent(data);
 }
 
-void	parent(pid_t chi_pid, char **cmds, int *fd)
+void	parent(t_pipex *data)
 {
-	(void)cmds;
-	(void)fd;
-	(void)chi_pid;
+	(void)data->fd;
 	ft_printf("everything fine\n");
 }
 
-void	child(int *fd, char **cmds)
+void	child(t_pipex *data)
 {
-	char	*arg;
-	char	**command;
-
 	if (dup2(fd[0], STDIN_FILENO) == -1 || dup2(fd[1], STDOUT_FILENO) == -1)
 	{
 		perror("dup2 failed");
 		exit(EXIT_FAILURE);
 	}
-	command = ft_split(cmds[0], ' ');
-	arg = ft_strjoin("/bin/", command[0]);
-	close(fd[0]);
-	close(fd[1]);
+	close_all_fd(data);
 	if (execve(arg, command, NULL) == -1)
 	{
 		perror("execve failed");

@@ -1,45 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   open_files.c                                       :+:      :+:    :+:   */
+/*   close.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/04 18:23:13 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/01/05 18:10:26 by lmicheli         ###   ########.fr       */
+/*   Created: 2024/01/05 18:42:18 by lmicheli          #+#    #+#             */
+/*   Updated: 2024/01/05 18:42:36 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int	*open_files(char *file1, char *file2)
+void	close_all_fd(t_pipex *data)
 {
-	int	*fd;
-
-	fd = malloc(sizeof(int) * 2);
-	if (!fd)
-	{
-		perror("malloc failed");
-		exit(0);
-	}
-	fd[0] = open(file1, O_RDONLY);
-	fd[1] = open(file2, O_WRONLY, 0644);
-	return (fd);
-}
-
-char	**get_args(t_pipex *data)
-{
-	char	**args;
-	char	*tmp;
 	int		i;
 
 	i = 0;
-	while (data->cmds[i])
+	while (i < data->fd_nbr)
 	{
-		tmp = ft_strjoin("/bin/", data->cmds[i]);
-		args[i] = tmp;
+		close(data->fd[i]);
 		i++;
 	}
-	args[i] = NULL;
-	return (args);
 }

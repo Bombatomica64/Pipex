@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 14:28:19 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/01/05 16:29:53 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/01/05 18:40:28 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,28 @@
 # include <fcntl.h>
 # include <unistd.h>
 
+typedef struct s_pipex
+{
+	char	*file1; // input file
+	char	*file2; // output file
+	char	**cmds;
+	char	***split_cmds;
+	char	**cmd_args;
+	int		*fd;
+	int		fd_nbr;
+	pid_t	chi_pid;
+}		t_pipex;
+
 int		file_exist(char *file);
 int		file_readable(char *file);
 int		file_writable(char *file);
 int		ft_matrix_len(char **array);
 int		*open_files(char *file1, char *file2);
 void	basic_check(char *file1, char *file2);
-void	do_commands(char **cmds, int *fd);
-void	parent(pid_t chi_pid, char **cmds, int *fd);
-void	child(int *fd, char **cmds);
+void	do_commands(t_pipex *data);
+void	parent(t_pipex *data);
+void	child(t_pipex *data);
 char	**get_commands(char **av, int ac);
+char	**get_args(t_pipex *data);
 
 #endif

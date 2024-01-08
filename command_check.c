@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 12:51:57 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/01/05 18:14:12 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/01/08 12:17:10 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	**get_commands(char **av, int ac)
 		cmds[i - 2] = ft_strdup(av[i]);
 		i++;
 	}
-	cmds[ac - 2] = NULL;
+	cmds[ac - 3] = NULL;
 	return (cmds);
 }
 
@@ -34,10 +34,9 @@ char	***ft_gigasplit(t_pipex *data)
 {
 	char	***split_cmds;
 	int		i;
-	int		j;
 
 	i = 0;
-	split_cmds = malloc(sizeof(char **) * ft_matrix_len(data->cmds));
+	split_cmds = malloc(sizeof(char **) * (ft_matrix_len(data->cmds) + 1));
 	if (!split_cmds)
 		return (NULL);
 	while (data->cmds[i])

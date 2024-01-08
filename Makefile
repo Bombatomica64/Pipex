@@ -3,18 +3,19 @@ NAME = pipex
 
 CC = cc -Wall -Wextra -Werror
 
-SRC = command_check.c  do_cmds.c  file_check.c  free_all.c \
-	  ft_matrix_size.c open_files.c  pipex.c
+SRC = close.c command_check.c  do_cmds.c  file_check.c  free_all.c \
+	  ft_matrix_size.c open_files.c  pipex.c 
 
 OBJ = $(SRC:.c=.o)
 
 FT_PRINTF = ft_printf
+LIBRARY = ft_printf/libftprintf.a
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
 	@make all -C $(FT_PRINTF)
-	@$(CC) $(OBJ) ft_printf/libftprintf.a -o $(NAME)
+	@$(CC) $(OBJ) $(LIBRARY) -o $(NAME)
 	@echo "Compiled "$(NAME)" successfully!"
 
 %.o: %.c
@@ -40,7 +41,7 @@ val:
 
 replay:
 	@rm -f $(NAME)
-	@$(CC) $(SRC) ft_printf/libftprintf.a -o $(NAME)
+	@$(CC) $(SRC) $(LIBRARY) -o $(NAME)
 	@echo "Let's  gooo!!"
 
 .PHONY: all clean fclean bonus re replay

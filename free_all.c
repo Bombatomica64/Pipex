@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 18:30:33 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/01/08 11:13:55 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/01/08 12:21:37 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,6 @@ void	free_int_ptr(int *ptr)
 
 void	free_pipex(t_pipex *pipex)
 {
-	free_char_ptr(pipex->file1);
-	free_char_ptr(pipex->file2);
 	free_char_ptr_ptr(pipex->cmds);
 	free_char_ptr_ptr_ptr(pipex->split_cmds);
 	free_char_ptr_ptr(pipex->cmd_args);

@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 14:28:19 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/01/08 11:41:01 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/01/08 12:20:23 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,11 @@ void	basic_check(char *file1, char *file2);
 void	do_commands(t_pipex *data);
 void	parent(t_pipex *data);
 void	child(t_pipex *data);
+void	free_pipex(t_pipex *data);
+void	close_all_fd(t_pipex *data);
+void	get_file_names(t_pipex *data, char *file1, char *file2);
 char	**get_commands(char **av, int ac);
 char	**get_args(t_pipex *data);
+char	***ft_gigasplit(t_pipex *data);
 
 #endif

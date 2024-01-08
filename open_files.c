@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 18:23:13 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/01/05 18:10:26 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/01/08 12:21:11 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ char	**get_args(t_pipex *data)
 	int		i;
 
 	i = 0;
+	args = malloc(sizeof(char *) * (ft_matrix_len(data->cmds) + 1));
 	while (data->cmds[i])
 	{
 		tmp = ft_strjoin("/bin/", data->cmds[i]);
@@ -42,4 +43,10 @@ char	**get_args(t_pipex *data)
 	}
 	args[i] = NULL;
 	return (args);
+}
+
+void	get_file_names(t_pipex *data, char *file1, char *file2)
+{
+	data->file1 = file1;
+	data->file2 = file2;
 }

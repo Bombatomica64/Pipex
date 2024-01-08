@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 14:28:19 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/01/08 12:20:23 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/01/08 18:41:39 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_pipex
 	char	**cmd_args;
 	int		current_cmd;
 	int		*fd;
+	int		*files;
 	int		fd_nbr;
 	pid_t	chi_pid;
 }		t_pipex;

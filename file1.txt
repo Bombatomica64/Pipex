@@ -2,8 +2,9 @@ cazzo
  palle
  a
  a
+ aqe
  a
  a
  a
- a
- ciao
+ ciaoefeererer		exit(EXIT_FAILURE);
+		exit(EXIT_FAILURE);

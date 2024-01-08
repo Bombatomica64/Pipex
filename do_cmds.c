@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:21:18 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/01/05 18:26:53 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/01/08 11:42:58 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	do_commands(t_pipex *data)
 {
 	data->split_cmds = ft_gigasplit(data);
 	data->cmd_args = get_args(data);
+	data.current_cmd = 0;
 	data->chi_pid = fork();
 	if (data->chi_pid == -1)
 	{
@@ -36,13 +37,17 @@ void	parent(t_pipex *data)
 
 void	child(t_pipex *data)
 {
-	if (dup2(fd[0], STDIN_FILENO) == -1 || dup2(fd[1], STDOUT_FILENO) == -1)
+	int		i;
+
+	i = data->current_cmd;
+	if (dup2(data->fd[0], STDIN_FILENO) == -1
+		|| dup2(data->fd[1], STDOUT_FILENO) == -1)
 	{
 		perror("dup2 failed");
 		exit(EXIT_FAILURE);
 	}
 	close_all_fd(data);
-	if (execve(arg, command, NULL) == -1)
+	if (execve(data->cmd_args[0], data->cmds[0], NULL) == -1)
 	{
 		perror("execve failed");
 		exit(EXIT_FAILURE);

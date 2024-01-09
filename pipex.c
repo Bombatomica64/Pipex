@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 17:33:09 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/01/09 17:10:30 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/01/09 18:01:32 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(int ac, char **av)
 		ft_printf("Error: too few arguments\n");
 		return (1);
 	}
-	if (av[1] == "here_doc")
+	if (ft_strncmp(av[1], "here_doc", 8) == 0)
 		do_bonus(ac, av);
 	data = malloc(sizeof(t_pipex));
 	basic_check(av[1], av[ac - 1]);

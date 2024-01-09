@@ -4,7 +4,8 @@ NAME = pipex
 CC = cc -g -Wall -Wextra -Werror
 
 SRC = close.c command_check.c  do_cmds.c  file_check.c  free_all.c \
-	  ft_matrix_size.c open_files.c  pipex.c utils.c
+	  ft_matrix_size.c open_files.c  pipex.c utils.c \
+	  bonus_args.c bonus_pipe.c free_bonus.c 
 
 OBJ = $(SRC:.c=.o)
 
@@ -46,5 +47,14 @@ replay:
 	@rm -f $(NAME)
 	@$(CC) $(SRC) $(LIBRARY) -o $(NAME)
 	@echo "Let's  gooo!!"
+
+bonus : all
+
+bval:
+	@read -p "Enter limiter: " limiter; \
+	read -p "Enter cmd: " cmd; \
+	read -p "Enter cmd2: " cmd2; \
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes \
+	./pipex "here_doc" "$${limiter}" "$${cmd}" "$${cmd2}" "file2.txt"
 
 .PHONY: all clean fclean bonus re replay

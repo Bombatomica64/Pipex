@@ -1,1 +1,2 @@
-15
+Riga 0: grep
+Riga 1: wc

@@ -1,10 +1,10 @@
 
 NAME = pipex
 
-CC = cc -Wall -Wextra -Werror
+CC = cc -g -Wall -Wextra -Werror
 
 SRC = close.c command_check.c  do_cmds.c  file_check.c  free_all.c \
-	  ft_matrix_size.c open_files.c  pipex.c 
+	  ft_matrix_size.c open_files.c  pipex.c utils.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -37,7 +37,10 @@ re: fclean all
 	make re -C $(FT_PRINTF)
 
 val:
-	valgrind --leak-check=full --show-leak-kinds=all ./pipex $(file) cmd cmd2 $(file2)
+	@read -p "Enter cmd: " cmd; \
+	read -p "Enter cmd2: " cmd2; \
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes \
+	./pipex "file1.txt" "$${cmd}" "$${cmd2}" "file2.txt"
 
 replay:
 	@rm -f $(NAME)

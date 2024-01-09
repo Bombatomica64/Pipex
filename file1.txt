@@ -1,10 +1,1 @@
-cazzo
- palle
- a
- a
- aqe
- a
- a
- a
- ciaoefeererer		exit(EXIT_FAILURE);
-		exit(EXIT_FAILURE);
+5

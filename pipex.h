@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 14:28:19 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/01/08 18:41:39 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/01/09 17:21:50 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,17 @@ typedef struct s_pipex
 	pid_t	chi_pid;
 }		t_pipex;
 
+typedef struct s_bonus
+{
+	int		here_doc;
+	int		file_fd;
+	char	*file;
+	char	*limiter;
+	char	**limiter_cmd;
+	char	**limiter_cmd2;
+	char	**limiter_cmd_args;
+}		t_bonus;
+
 int		file_exist(char *file);
 int		file_readable(char *file);
 int		file_writable(char *file);
@@ -45,11 +56,16 @@ void	basic_check(char *file1, char *file2);
 void	do_commands(t_pipex *data);
 void	parent(t_pipex *data);
 void	child(t_pipex *data);
+void	free_char_ptr_ptr(char **ptr);
 void	free_pipex(t_pipex *data);
 void	close_all_fd(t_pipex *data);
 void	get_file_names(t_pipex *data, char *file1, char *file2);
 char	**get_commands(char **av, int ac);
 char	**get_args(t_pipex *data);
 char	***ft_gigasplit(t_pipex *data);
+void	print_matrix(char **matrix);
+void	print_matrix2(char ***matrix);
+void	bonus_check(int ac, char **av);
+void	do_bonus(int ac, char **av);
 
 #endif

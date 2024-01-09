@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 18:30:33 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/01/08 12:21:37 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/01/09 15:21:11 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	free_char_ptr_ptr_ptr(char ***ptr)
 	int	j;
 
 	i = 0;
+	j = 0;
 	if (ptr)
 	{
 		while (ptr[i])
@@ -65,9 +66,9 @@ void	free_int_ptr(int *ptr)
 
 void	free_pipex(t_pipex *pipex)
 {
-	free_char_ptr_ptr(pipex->cmds);
+	free(pipex->files);
+//	free_char_ptr_ptr(pipex->cmds);
 	free_char_ptr_ptr_ptr(pipex->split_cmds);
 	free_char_ptr_ptr(pipex->cmd_args);
-	free_int_ptr(pipex->fd);
 	free(pipex);
 }

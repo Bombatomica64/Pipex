@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 17:09:38 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/01/10 09:47:24 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/01/10 10:52:24 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	parent_bonus(t_bonus *data)
 {
-	waitpid(data->chi_pid, NULL, 0);
+	wait(NULL);
+	ft_printf("limiter_cmd_args[1]: %s\n", data->limiter_cmd_args[1]);
 	close(data->fd[1]);
 	if (dup2(data->file_fd, 1) == -1)
 	{
@@ -32,19 +33,35 @@ void	parent_bonus(t_bonus *data)
 
 void	child_bonus(t_bonus *data)
 {
+	int	flag;
+
+	flag = 0;
 	close(data->fd[0]);
+	ft_printf("limiter_cmd_args[1]: %s\n", data->limiter_cmd_args[1]);
+	ft_printf("limiter_cmd2[0]: %s\n", data->limiter_cmd2[0]);
 	if (dup2(data->file_fd, 1) == -1)
 	{
 		perror("Error: dup2 failed in child\n");
 		free_bonus(data);
 		exit(1);
 	}
-	if (execve(data->limiter_cmd_args[1], data->limiter_cmd2, NULL) == -1)
+	while (flag == 0)
 	{
-		perror("Error: execve failed in child\n");
-		free_bonus(data);
-		exit(1);
+		data->line = get_next_line(0);
+		if (ft_strncmp(data->line, data->limiter,
+				ft_strlen(data->limiter)) == 0)
+			flag = 1;
+		else if (execve(data->limiter_cmd_args[1],
+				data->limiter_cmd2, NULL) == -1)
+		{
+			perror("Error: execve failed in child\n");
+			free_bonus(data);
+			exit(1);
+		}
+		free(data->line);
 	}
+	free_bonus(data);
+	exit(0);
 }
 
 t_bonus	*initialize_bonus(int ac, char **av)
@@ -62,6 +79,7 @@ t_bonus	*initialize_bonus(int ac, char **av)
 	data->limiter_cmd = ft_split(av[3], ' ');
 	data->limiter_cmd2 = ft_split(av[4], ' ');
 	data->limiter_cmd_args = get_bonus_args(data);
+	ft_printf("here\n");
 	data->file_fd = open(data->file, O_WRONLY, 0644);
 	if (data->file_fd < 0)
 	{

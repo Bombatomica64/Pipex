@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:21:18 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/01/09 12:54:49 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/01/10 09:51:52 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ void	child(t_pipex *data)
 		free_pipex(data);
 		exit(EXIT_FAILURE);
 	}
-	ft_printf("sesso\n");
 	if (execve(data->cmd_args[0], data->split_cmds[i], NULL) == -1)
 	{
 		perror("execve failed in child");
@@ -88,4 +87,5 @@ void	child(t_pipex *data)
 	}
 	data->current_cmd++;
 	free_pipex(data);
+	exit(0);
 }

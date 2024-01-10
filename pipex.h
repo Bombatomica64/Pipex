@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 14:28:19 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/01/09 18:28:21 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/01/10 10:32:28 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct s_bonus
 	pid_t	chi_pid;
 	char	*file;
 	char	*limiter;
+	char	*line;
 	char	**limiter_cmd;
 	char	**limiter_cmd2;
 	char	**limiter_cmd_args;

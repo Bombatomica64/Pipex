@@ -1,3 +1,1 @@
-Riga 0: grep
-Riga 1: wc
-7
+0

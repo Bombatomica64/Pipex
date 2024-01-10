@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 17:09:38 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/01/10 18:25:48 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/01/10 18:26:41 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ void	child_bonus(t_bonus *data)
 		}
 		free(data->line);
 		data->line = get_next_line(STDIN_FILENO);
-		//kms
 	}
 	if (execve(data->limiter_cmd_args[0],
 			data->limiter_cmd, NULL) == -1)

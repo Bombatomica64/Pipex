@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 17:09:38 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/01/09 18:45:04 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/01/10 09:47:24 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@ void	parent_bonus(t_bonus *data)
 		free_bonus(data);
 		exit(1);
 	}
-
-	if (execve(data->limiter_cmd2[0], data->limiter_cmd_args, NULL) == -1)
+	if (execve(data->limiter_cmd_args[1], data->limiter_cmd, NULL) == -1)
 	{
 		perror("Error: execve failed in parent\n");
 		free_bonus(data);
@@ -40,7 +39,7 @@ void	child_bonus(t_bonus *data)
 		free_bonus(data);
 		exit(1);
 	}
-	if (execve(, NULL) == -1)
+	if (execve(data->limiter_cmd_args[1], data->limiter_cmd2, NULL) == -1)
 	{
 		perror("Error: execve failed in child\n");
 		free_bonus(data);

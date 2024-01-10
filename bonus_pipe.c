@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 17:09:38 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/01/10 16:29:31 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/01/10 18:25:19 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,31 +33,25 @@ void	parent_bonus(t_bonus *data)
 
 void	child_bonus(t_bonus *data)
 {
-	int	flag;
-
-	flag = 0;
 	close(data->fd[0]);
-	ft_printf("limiter: %s\n", data->limiter);
-	print_matrix(data->limiter_cmd);
-	ft_printf("limiter_cmd_args: %s\n", data->limiter_cmd_args[0]);
 	if (dup2(data->fd[1], STDOUT_FILENO) == -1)
 	{
 		perror("Error: dup2 failed in child\n");
 		free_bonus(data);
 		exit(1);
 	}
-	data->line = get_next_line(STDIN_FILENO);
-	while (flag == 0)
+	data->line = scanf("%s", data->line);
+	while (1)
 	{
-		write(data->file_fd, data->line, ft_strlen(data->line));
-		free(data->line);
 		if (ft_strncmp(data->line, data->limiter,
 				ft_strlen(data->limiter)) == 0)
 		{
-			flag = 1;
-			ft_printf("limiter found\n");
+			free(data->line);
+			break ;
 		}
+		free(data->line);
 		data->line = get_next_line(STDIN_FILENO);
+		//kms
 	}
 	if (execve(data->limiter_cmd_args[0],
 			data->limiter_cmd, NULL) == -1)
@@ -84,7 +78,7 @@ t_bonus	*initialize_bonus(int ac, char **av)
 	data->file = av[5];
 	data->limiter_cmd = ft_split(av[3], ' ');
 	data->limiter_cmd2 = ft_split(av[4], ' ');
-	data->limiter = ft_strjoin(av[2], "\n");
+	data->limiter = av[2];
 	data->limiter_cmd_args = get_bonus_args(data);
 	data->file_fd = open(data->file, O_WRONLY, 0644);
 	if (data->file_fd < 0)

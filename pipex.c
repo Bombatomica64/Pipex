@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 17:33:09 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/01/09 18:01:32 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/01/10 15:15:46 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,7 @@ int	main(int ac, char **av)
 	int		fd[2];
 
 	if (ac < 5)
-	{
-		ft_printf("Error: too few arguments\n");
-		return (1);
-	}
+		return (ft_printf("Error: too few arguments\n"));
 	if (ft_strncmp(av[1], "here_doc", 8) == 0)
 		do_bonus(ac, av);
 	data = malloc(sizeof(t_pipex));
@@ -30,7 +27,6 @@ int	main(int ac, char **av)
 	data->fd = fd;
 	get_file_names(data, av[1], av[ac - 1]);
 	data->cmds = get_commands(av, ac);
-	print_matrix(data->cmds);
 	data->split_cmds = ft_gigasplit(data);
 	data->cmd_args = get_args(data);
 	data->current_cmd = 0;

@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:21:18 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/01/10 09:51:52 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/01/10 15:26:31 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 void	do_commands(t_pipex *data)
 {
-	print_matrix(data->cmds);
-	print_matrix2(data->split_cmds);
 	if (pipe(data->fd) == -1)
 	{
 		perror("pipe failed\n");

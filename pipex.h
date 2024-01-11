@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 14:28:19 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/01/10 17:20:52 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/01/11 18:34:08 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,60 +22,45 @@
 # include <fcntl.h>
 # include <string.h>
 
-
 typedef struct s_pipex
 {
 	char	*file1; // input file
 	char	*file2; // output file
+	char	*line; // line read from input file
+	char	*limiter; // limiter
+	char	*path;
+	char	*part_path;
+	char	**paths;
 	char	**cmds;
-	char	***split_cmds;
 	char	**cmd_args;
-	int		current_cmd;
-	int		*fd;
+	int		bonus;
 	int		*files;
-	int		fd_nbr;
 	pid_t	chi_pid;
 }		t_pipex;
-
-typedef struct s_bonus
-{
-	int		file_fd;
-	int		fd[2];
-	pid_t	chi_pid;
-	char	*file;
-	char	*limiter;
-	char	*line;
-	char	**limiter_cmd;
-	char	**limiter_cmd2;
-	char	**limiter_cmd_args;
-}		t_bonus;
 
 int		file_exist(char *file);
 int		file_readable(char *file);
 int		file_writable(char *file);
 int		ft_matrix_len(char **array);
 int		*open_files(char *file1, char *file2);
-void	basic_check(char *file1, char *file2);
+void	basic_check(char *file1);
 void	do_commands(t_pipex *data);
 void	parent(t_pipex *data);
 void	child(t_pipex *data);
-void	free_bonus(t_bonus *data);
-void	free_char_ptr(char *ptr);
 void	free_char_ptr_ptr(char **ptr);
 void	free_char_ptr_ptr_ptr(char ***ptr);
 void	free_int_ptr(int *ptr);
 void	free_pipex(t_pipex *data);
 void	close_all_fd(t_pipex *data);
 void	get_file_names(t_pipex *data, char *file1, char *file2);
+void	get_file_bonus(t_pipex *data, char *file);
 char	**get_commands(char **av, int ac);
 char	**get_args(t_pipex *data);
-char	**get_bonus_args(t_bonus *data);
 char	***ft_gigasplit(t_pipex *data);
 void	print_matrix(char **matrix);
 void	print_matrix2(char ***matrix);
-void	bonus_check(int ac, char **av);
-void	do_bonus(int ac, char **av);
-void	parent_bonus(t_bonus *data);
-void	child_bonus(t_bonus *data);
+void	do_bonus(t_pipex *data, int ac);
+void	error(t_pipex *data, int error);
+t_pipex	*initialize(int ac, char **av, char **mvp, int nbr);
 
 #endif

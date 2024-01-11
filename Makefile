@@ -5,7 +5,7 @@ CC = cc -g -Wall -Wextra -Werror
 
 SRC = close.c command_check.c  do_cmds.c  file_check.c  free_all.c \
 	  ft_matrix_size.c open_files.c  pipex.c utils.c \
-	  bonus_args.c bonus_pipe.c free_bonus.c 
+	  bonus_args.c bonus_pipe.c free_bonus.c get_next_line2.c \
 
 OBJ = $(SRC:.c=.o)
 

@@ -32,6 +32,7 @@ int			ft_isascii(int c);
 int			ft_toupper(int c);
 int			ft_tolower(int c);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
+int			ft_strcmp(const char *s1, const char *s2);
 int			ft_memcmp(const void *s1, const void *s2, size_t n);
 int			ft_atoi(const char *nptr);
 int			ft_lstsize(t_list *lst);
@@ -67,6 +68,5 @@ void		ft_lstiter(t_list *lst, void (*f)(void *));
 t_list		*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 t_list		*ft_lstnew(void *content);
 t_list		*ft_lstlast(t_list *lst);
-int			ft_strcmp(const char *s1, const char *s2);
 
 #endif

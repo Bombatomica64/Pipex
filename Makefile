@@ -47,7 +47,7 @@ bonus : all
 val:
 	@read -p "Enter cmd: " cmd; \
 	read -p "Enter cmd2: " cmd2; \
-	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes \
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --trace-children=yes \
 	./pipex "file1.txt" "$${cmd}" "$${cmd2}" "file2.txt"
 
 bval:

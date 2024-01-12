@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 18:23:13 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/01/12 16:48:33 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/01/12 18:04:02 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,17 +47,11 @@ void	get_file_bonus(t_pipex *data, char *file, char *limiter)
 	data->limiter = limiter;
 }
 
-t_pipex	*initialize(int ac, char **av, char **mvp, int nbr)
+t_pipex	*initialize(int ac, char **av, int nbr, t_pipex *data)
 {
-	t_pipex	*data;
-
-	(void)mvp;
+	data->bonus = nbr;
 	if (nbr == 2)
 		basic_check(av[1]);
-	data = malloc(sizeof(t_pipex));
-	data->bonus = nbr;
-	if (!data)
-		error(data, 6);
 	if (nbr == 2)
 		get_file_names(data, av[1], av[ac - 1]);
 	else

@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 17:09:38 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/01/12 15:48:09 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/01/12 18:07:53 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	bonus_child(int fd[2], t_pipex *data)
 	}
 }
 
-void	here_doc(char *limiter, int argc, t_pipex *data)
+/* void	here_doc(char *limiter, int argc, t_pipex *data)
 {
 	pid_t	reader;
 	int		fd[2];
@@ -86,7 +86,7 @@ void	here_doc(char *limiter, int argc, t_pipex *data)
 		dup2(fd[0], STDIN_FILENO);
 		wait(NULL);
 	}
-}
+} */
 /* 	if (data->chi_pid == 0)
 	{
 		close(data->fd[0]);

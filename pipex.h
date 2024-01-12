@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 14:28:19 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/01/12 16:10:31 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/01/12 18:25:10 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	bonus_child(int fd[2], t_pipex *data);
 void	error(t_pipex *data, int error);
 void	execute(char *cmd, char **mvp, t_pipex *data);
 void	child_process(char *cmd, char **mvp, t_pipex *data);
-void	here_doc(char *limiter, int argc, t_pipex *data);
-t_pipex	*initialize(int ac, char **av, char **mvp, int nbr);
+void	daddy_execute(char *cmd, char **mvp, t_pipex *data);
+t_pipex	*initialize(int ac, char **av, int nbr, t_pipex *data);
 
 #endif

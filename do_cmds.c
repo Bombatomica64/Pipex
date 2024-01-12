@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:21:18 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/01/12 16:24:59 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/01/12 18:26:06 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,29 @@ void	execute(char *av, char **mvp, t_pipex *data)
 		free_pipex(data);
 		exit(EXIT_FAILURE);
 	}
+	if (execve(path, cmd, NULL) == -1)
+		error(data, 3);
+	free_char_ptr_ptr(cmd);
+	free(path);
+}
+
+void	daddy_execute(char *av, char **mvp, t_pipex *data)
+{
+	int		i;
+	char	*path;
+	char	**cmd;
+
+	i = 0;
+	cmd = ft_split(av, ' ');
+	path = find_path(data, mvp, cmd[0]);
+	if (path == 0)
+	{
+		perror("Error: command not found\n");
+		free_char_ptr_ptr(cmd);
+		free_pipex(data);
+		exit(EXIT_FAILURE);
+	}
+	free(data);
 	if (execve(path, cmd, NULL) == -1)
 		error(data, 3);
 	free_char_ptr_ptr(cmd);

@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 14:28:19 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/01/12 12:23:22 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/01/12 16:10:31 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,8 @@ typedef struct s_pipex
 	char	*path;
 	char	*part_path;
 	char	**paths;
-	char	**cmd_args;
 	int		bonus;
-	int		files[2];
-	pid_t	chi_pid;
+	int		files[2]; // file descriptors
 }		t_pipex;
 
 int		file_exist(char *file);

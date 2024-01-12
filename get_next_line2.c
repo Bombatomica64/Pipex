@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 13:02:03 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/01/12 12:01:42 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/01/12 15:48:21 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ int	get_new_next_line(char **line)
 	buffer[i] = '\n';
 	buffer[++i] = '\0';
 	*line = buffer;
-	free(buffer);
 	return (r);
 }
 /* 	int		ret;

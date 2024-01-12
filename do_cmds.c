@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:21:18 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/01/12 11:05:47 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/01/12 16:24:59 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void	execute(char *av, char **mvp, t_pipex *data)
 	if (path == 0)
 	{
 		perror("Error: command not found\n");
+		free_char_ptr_ptr(cmd);
 		free_pipex(data);
 		exit(EXIT_FAILURE);
 	}

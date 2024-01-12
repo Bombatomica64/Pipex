@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 17:09:38 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/01/12 12:27:07 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/01/12 15:48:09 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,11 @@ void	bonus_child(int fd[2], t_pipex *data)
 		if (ft_strncmp(data->line, data->limiter,
 				ft_strlen(data->limiter)) == 0)
 		{
-			//free_pipex(data);
+			free(data->line);
 			exit(EXIT_SUCCESS);
 		}
 		write(fd[1], data->line, ft_strlen(data->line));
-//		free(data->line);
+		free(data->line);
 	}
 }
 

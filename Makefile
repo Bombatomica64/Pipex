@@ -37,11 +37,6 @@ fclean: clean
 re: fclean all
 	make re -C $(FT_PRINTF)
 
-val:
-	@read -p "Enter cmd: " cmd; \
-	read -p "Enter cmd2: " cmd2; \
-	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes \
-	./pipex "file1.txt" "$${cmd}" "$${cmd2}" "file2.txt"
 
 replay:
 	@rm -f $(NAME)
@@ -49,12 +44,18 @@ replay:
 	@echo "Let's  gooo!!"
 
 bonus : all
+val:
+	@read -p "Enter cmd: " cmd; \
+	read -p "Enter cmd2: " cmd2; \
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes \
+	./pipex "file1.txt" "$${cmd}" "$${cmd2}" "file2.txt"
 
 bval:
 	@read -p "Enter limiter: " limiter; \
 	read -p "Enter cmd: " cmd; \
 	read -p "Enter cmd2: " cmd2; \
-	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes \
-	./pipex "here_doc" "$${limiter}" "$${cmd}" "$${cmd2}" "file2.txt"
+	read -p "Enter cmd3: " cmd3; \
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -s \
+	./pipex "here_doc" "$${limiter}" "$${cmd}" "$${cmd2}" "$${cmd3}" "file2.txt"
 
 .PHONY: all clean fclean bonus re replay

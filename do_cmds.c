@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:21:18 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/01/11 17:53:12 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/01/12 11:05:47 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,51 @@ char	*find_path(t_pipex *data, char **envp, char *cmd)
 		free(data->paths[i]);
 	free(data->paths);
 	return (0);
+}
+
+void	child_process(char *cmd, char **mvp, t_pipex *data)
+{
+	pid_t	chi_pid;
+	int		fd[2];
+
+	if (pipe(fd) == -1)
+		error(data, 1);
+	chi_pid = fork();
+	if (chi_pid == -1)
+		error(data, 4);
+	if (chi_pid == 0)
+	{
+		close(fd[0]);
+		dup2(fd[1], STDOUT_FILENO);
+		execute(cmd, mvp, data);
+	}
+	else
+	{
+		close(fd[1]);
+		dup2(fd[0], STDIN_FILENO);
+		wait(NULL);
+	}
+}
+
+void	execute(char *av, char **mvp, t_pipex *data)
+{
+	int		i;
+	char	*path;
+	char	**cmd;
+
+	i = 0;
+	cmd = ft_split(av, ' ');
+	path = find_path(data, mvp, cmd[0]);
+	if (path == 0)
+	{
+		perror("Error: command not found\n");
+		free_pipex(data);
+		exit(EXIT_FAILURE);
+	}
+	if (execve(path, cmd, NULL) == -1)
+		error(data, 3);
+	free_char_ptr_ptr(cmd);
+	free(path);
 }
 /* void	do_commands(t_pipex *data)
 {

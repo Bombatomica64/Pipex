@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 18:30:33 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/01/11 16:33:14 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/01/12 12:06:09 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,17 +70,15 @@ void	free_pipex(t_pipex *pipex)
 	{
 		if (pipex->bonus == 2)
 		{
-			free_int_ptr(pipex->fd);
-			free_char_ptr_ptr_ptr(pipex->split_cmds);
 			free_char_ptr_ptr(pipex->cmd_args);
-			free(pipex);
 		}
 		else
 		{
 			free_char_ptr_ptr(pipex->cmd_args);
-			free_int_ptr(pipex->fd);
-			free_int_ptr(pipex->files);
-			free(pipex);
 		}
+		free_char_ptr(pipex->part_path);
+		free_char_ptr_ptr(pipex->paths);
+		free_char_ptr(pipex->path);
+		free(pipex);
 	}
 }

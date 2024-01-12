@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 17:33:09 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/01/11 18:23:44 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/01/12 12:30:21 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ int	main(int ac, char **av, char **mvp)
 	}
 	while (data->bonus < ac -2)
 		child_process(av[data->bonus++], mvp, data);
-	dup2(data->file2, STDOUT_FILENO);
-	execute(av[ac - 2], mvp);
+	dup2(data->files[1], STDOUT_FILENO);
+	execute(av[ac - 2], mvp, data);
 }
 
 /*

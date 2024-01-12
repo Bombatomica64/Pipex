@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 17:09:38 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/01/12 18:07:53 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/01/12 18:39:21 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	do_bonus(t_pipex *data, int ac)
 	if (chi_pid == 0)
 	{
 		bonus_child(fd, data);
+		free(data);
 	}
 	else
 	{

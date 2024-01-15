@@ -4,7 +4,7 @@ NAME = pipex
 CC = cc -g -Wall -Wextra -Werror
 
 SRC = close.c command_check.c  do_cmds.c  file_check.c  free_all.c \
-	ft_matrix_size.c  pipex.c utils.c \
+	ft_matrix_size.c pipex.c utils.c \
 	bonus_pipe.c get_next_line2.c \
 
 OBJ = $(SRC:.c=.o)
@@ -22,21 +22,20 @@ $(NAME): $(OBJ)
 %.o: %.c
 	@$(CC) -c $< -o $@
 
+bonus : all
+
 clean:
 	@make clean -C $(FT_PRINTF)
-	@make clean -C bonus
 	@rm -f $(OBJ)
 	@echo "Cleaned objects successfully!"
 	
 fclean: clean
 	@rm -f $(NAME)
 	@make fclean -C $(FT_PRINTF)
-	@make fclean -C bonus
 	@echo "Cleaned "$(NAME)" successfully!"
 	
 re: fclean all
-	@make re -C $(FT_PRINTF)
-	@make re -C bonus
+	make re -C $(FT_PRINTF)
 
 
 replay:
@@ -44,7 +43,6 @@ replay:
 	@$(CC) $(SRC) $(LIBRARY) -o $(NAME)
 	@echo "Let's  gooo!!"
 
-bonus : 
-	@make -C bonus
+bonus : all
 
 .PHONY: all clean fclean bonus re replay

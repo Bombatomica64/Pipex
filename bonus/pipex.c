@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 17:33:09 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/01/15 17:05:45 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/01/15 17:11:32 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	basic_check_ac(int ac, int bonus)
 	}
 	if (ac < 6 && bonus == 1)
 	{
-		perror("Error: too few arguments\n");
+		perror("\033[36mError: too few arguments\n");
 		exit(EXIT_FAILURE);
 	}
 }
@@ -37,7 +37,7 @@ int	main(int ac, char **av, char **mvp)
 	int			filein;
 	int			fileout;
 
-	basic_check_ac(ac, 0);
+	basic_check_ac(ac, 1);
 	if (ft_strncmp(av[1], "here_doc", 8) == 0)
 	{
 		i = 3;
